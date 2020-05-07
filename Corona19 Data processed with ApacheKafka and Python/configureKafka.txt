@@ -1,0 +1,11 @@
+1. start kafka
+#start  zookeeper
+sudo systemctl start confluent-zookeeper
+sudo systemctl enable confluent-zookeeper
+
+#start kafka
+sudo systemctl start confluent-kafka
+sudo systemctl enable confluent-kafka
+
+1. create a topic named py
+kafka-topics --bootstrap-server localhost:9092 --create --topic py --partitions 1 --replication-factor 1
