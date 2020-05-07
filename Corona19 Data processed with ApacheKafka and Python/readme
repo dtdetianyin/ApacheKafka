@@ -1,4 +1,6 @@
 This example shows how to consume REST API data with python and Apache Kafka.
 
+Kafka Producer and Consumer implemented in pyconsumer and pyproducer
+
 DataSource: free corona data restapi
 https://covid19api.com/
