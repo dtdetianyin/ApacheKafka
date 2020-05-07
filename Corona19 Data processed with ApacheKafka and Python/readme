@@ -1,1 +1,4 @@
-This example shows h
+This example shows how to consume REST API data with python and Apache Kafka.
+
+DataSource: free corona data restapi
+https://covid19api.com/
