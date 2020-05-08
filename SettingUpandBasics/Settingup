@@ -1,2 +1,49 @@
 This Guide will show how to set up a three node Kafka Cluster and how to start using Kafka 
-/tobe done
+1. Download 
+ wget -qO - https://packages.confluent.io/deb/5.2/archive.key | sudo apt-key add -
+ sudo add-apt-repository "deb [arch=amd64] https://packages.confluent.io/deb/5.2 stable main"
+ sudo apt-get update && sudo apt-get install -y openjdk-8-jdk confluent-community-2.12
+ 
+2. Edit Host files
+
+ sudo vi /etc/hosts
+ 
+ <server 1 private IP> zoo1
+ <server 2 private IP> zoo2
+ <server 3 private IP> zoo3
+ 
+ for example:
+ 172.31.102.109 zoo1
+ 172.31.100.128 zoo2
+ 172.31.97.167 zoo3
+ 
+ 3. Configure Zookeeper
+  sudo vi /etc/kafka/zookeeper.properties
+  
+   tickTime=2000
+ dataDir=/var/lib/zookeeper/
+ clientPort=2181
+ initLimit=5
+ syncLimit=2
+ server.1=zoo1:2888:3888
+ server.2=zoo2:2888:3888
+ server.3=zoo3:2888:3888
+ autopurge.snapRetainCount=3
+ autopurge.purgeInterval=24
+ 
+ sudo vi /var/lib/zookeeper/myid
+ 
+ <server id 1, 2, or 3>
+ 
+ 4. Configure Kafka properties
+  sudo vi /etc/kafka/server.properties
+  
+  broker.id=<server id 1, 2, or 3>
+...
+  advertised.listeners=PLAINTEXT://<hostname zoo1, zoo2, or zoo3>:9092
+...
+  zookeeper.connect=zoo1:2181
+ 
+ 
+ 
+ 
